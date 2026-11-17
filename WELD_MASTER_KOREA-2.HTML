@@ -1,0 +1,1927 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#ffffff">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<title>WELD MASTER KOREA</title>
+
+<style>
+:root {
+  --navy: #12345a;
+  --blue: #1769aa;
+  --green: #16834a;
+  --bg: #eef2f7;
+  --border: #d8e0ea;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: #1f2937;
+  font-family: Arial, "Malgun Gothic", sans-serif;
+  font-size: 14px;
+}
+
+header {
+  background: var(--navy);
+  color: white;
+  padding: 20px 15px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 22px;
+}
+
+header p {
+  margin: 7px 0 0;
+  color: #dbeafe;
+  font-size: 12px;
+}
+
+nav {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 10px;
+  background: white;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid var(--border);
+}
+
+nav button {
+  white-space: nowrap;
+  margin: 0;
+  padding: 10px 13px;
+  background: #e8eef5;
+  color: var(--navy);
+}
+
+nav button.active {
+  background: var(--navy);
+  color: white;
+}
+
+main {
+  max-width: 850px;
+  margin: auto;
+  padding: 12px;
+}
+
+.card {
+  background: white;
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 7px #0000000b;
+}
+
+.card h2 {
+  color: var(--navy);
+  margin: 0 0 15px;
+  font-size: 19px;
+}
+
+.card h3 {
+  margin-top: 22px;
+  font-size: 16px;
+}
+
+label {
+  display: block;
+  margin-top: 13px;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+input, select, textarea {
+  width: 100%;
+  min-height: 43px;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  background: white;
+  font-size: 16px;
+  color: #1f2937;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+  border: 0;
+  border-radius: 7px;
+  padding: 12px;
+  margin-top: 12px;
+  background: var(--blue);
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+button.green {
+  background: var(--green);
+}
+
+button.gray {
+  background: #475569;
+}
+
+button.red {
+  background: #b42318;
+}
+
+button.full {
+  width: 100%;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.result {
+  margin-top: 14px;
+  padding: 13px;
+  background: #f0f7ff;
+  border: 1px solid #c8e0fa;
+  border-radius: 8px;
+  line-height: 1.9;
+  overflow-wrap: anywhere;
+}
+
+.note {
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.status {
+  padding: 9px;
+  background: #ecfdf3;
+  color: #166534;
+  border-radius: 7px;
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+th, td {
+  padding: 8px 6px;
+  border: 1px solid var(--border);
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+th {
+  background: #eaf1f9;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 22px 0;
+}
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+footer {
+  text-align: center;
+  color: #64748b;
+  padding: 20px;
+  font-size: 12px;
+}
+
+@media(max-width: 480px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  main {
+    padding: 8px;
+  }
+
+  .card {
+    padding: 13px;
+  }
+
+  header h1 {
+    font-size: 20px;
+  }
+}
+
+@media print {
+  body.print-mode {
+    background: white;
+  }
+
+  body.print-mode header,
+  body.print-mode nav,
+  body.print-mode footer,
+  body.print-mode #app > .page:not(#pageReport) {
+    display: none !important;
+  }
+
+  body.print-mode #pageReport {
+    display: block !important;
+    padding: 0;
+    margin: 0;
+  }
+
+  body.print-mode #reportControls {
+    display: none !important;
+  }
+
+  body.print-mode #reportOutput {
+    display: block !important;
+  }
+
+  body.print-mode .card {
+    box-shadow: none;
+    border: 0;
+    padding: 0;
+  }
+
+  body.print-mode button {
+    display: none !important;
+  }
+
+  body.print-mode table {
+    break-inside: avoid;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>WELD MASTER KOREA</h1>
+  <p>용접 계산 · 용접봉 소모량 · 재고 관리 · WPS · 계산서</p>
+</header>
+
+<nav>
+  <button class="active" onclick="showPage('pageProject',this)">프로젝트</button>
+  <button onclick="showPage('pageWeld',this)">용접 계산</button>
+  <button onclick="showPage('pageInventory',this)">재고 관리</button>
+  <button onclick="showPage('pageEngineering',this)">입열량·CEV</button>
+  <button onclick="showPage('pageWPS',this)">WPS 검토</button>
+  <button onclick="showPage('pageReport',this)">계산서·백업</button>
+</nav>
+
+<main id="app">
+
+<!-- ================================== -->
+<!-- 1. 프로젝트 -->
+<!-- ================================== -->
+
+<section class="page active card" id="pageProject">
+
+<h2>1. 프로젝트 정보</h2>
+
+<label>프로젝트명</label>
+<input id="project" data-save placeholder="예: 배관 제작 프로젝트">
+
+<label>작업번호</label>
+<input id="jobNo" data-save placeholder="예: WELD-001">
+
+<div class="grid">
+  <div>
+    <label>모재 1</label>
+    <select id="base1" data-save>
+      <option>A36</option>
+      <option>A516 Gr.70</option>
+      <option>A387 Gr.11</option>
+      <option>A387 Gr.22</option>
+      <option>SUS304</option>
+      <option>SUS316L</option>
+      <option>Ti Grade 2</option>
+    </select>
+  </div>
+
+  <div>
+    <label>모재 2</label>
+    <select id="base2" data-save>
+      <option>A36</option>
+      <option>A516 Gr.70</option>
+      <option>A387 Gr.11</option>
+      <option>A387 Gr.22</option>
+      <option>SUS304</option>
+      <option>SUS316L</option>
+      <option>Ti Grade 2</option>
+    </select>
+  </div>
+</div>
+
+<label>용접 방식</label>
+<select id="process" data-save>
+  <option value="SMAW">SMAW - 피복아크용접</option>
+  <option value="GTAW">GTAW - TIG 용접</option>
+  <option value="GMAW">GMAW - MIG/MAG 용접</option>
+  <option value="FCAW">FCAW - 플럭스코어드 용접</option>
+  <option value="SAW">SAW - 서브머지드아크용접</option>
+</select>
+
+<label>적용 기준</label>
+<select id="code" data-save>
+  <option>ASME Section IX</option>
+  <option>ASME Section VIII</option>
+  <option>ASME B31.3</option>
+  <option>KS</option>
+  <option>기타</option>
+</select>
+
+<label>실제 사용 용접봉 규격</label>
+<input id="filler" data-save placeholder="예: E8018-B2">
+
+<button class="full" onclick="recommendFiller()">용접봉 후보 검토</button>
+
+<div id="fillerResult" class="result">
+  모재와 용접 방식을 선택한 후 후보를 확인하세요.
+</div>
+
+<p class="note">
+자동 추천은 참고용입니다. 실제 용접에는 승인된 WPS/PQR,
+모재 그룹, 용가재 분류, 설계 조건 및 적용 코드의 확인이 필요합니다.
+</p>
+
+<label>저장된 프로젝트</label>
+<select id="projectSelect">
+  <option value="">저장된 프로젝트 없음</option>
+</select>
+
+<button class="green full" onclick="saveProject()">현재 프로젝트 저장</button>
+<button class="gray full" onclick="loadSelectedProject()">선택한 프로젝트 불러오기</button>
+
+<div id="projectResult" class="result">프로젝트 저장 상태가 표시됩니다.</div>
+
+</section>
+
+
+<!-- ================================== -->
+<!-- 2. 용접 계산 -->
+<!-- ================================== -->
+
+<section class="page card" id="pageWeld">
+
+<h2>2. 용접량 및 소모량 계산</h2>
+
+<label>용접 형상</label>
+<select id="joint" data-save>
+  <option value="fillet">필릿 용접</option>
+  <option value="square">I형 맞대기</option>
+  <option value="singleV">V형 맞대기</option>
+  <option value="doubleV">X형 맞대기</option>
+  <option value="singleBevel">단면 베벨형</option>
+  <option value="doubleBevel">양면 베벨형</option>
+  <option value="singleU">U형 맞대기</option>
+  <option value="doubleU">양면 U형 맞대기</option>
+  <option value="K">K형 T접합 근사</option>
+</select>
+
+<div class="grid">
+
+  <div>
+    <label>판 두께 (mm)</label>
+    <input id="thickness" data-save type="number" value="10" min="0" step="any">
+  </div>
+
+  <div>
+    <label>용접 길이 (mm)</label>
+    <input id="length" data-save type="number" value="1000" min="0" step="any">
+  </div>
+
+  <div>
+    <label>용접 개수</label>
+    <input id="count" data-save type="number" value="1" min="1" step="1">
+  </div>
+
+  <div>
+    <label>필릿 각장 (mm)</label>
+    <input id="leg" data-save type="number" value="6" min="0" step="any">
+  </div>
+
+  <div>
+    <label>루트 간격 (mm)</label>
+    <input id="gap" data-save type="number" value="2" min="0" step="any">
+  </div>
+
+  <div>
+    <label>루트 페이스 (mm)</label>
+    <input id="face" data-save type="number" value="2" min="0" step="any">
+  </div>
+
+  <div>
+    <label>개선각 (도)</label>
+    <input id="angle" data-save type="number" value="60" min="1" max="179" step="any">
+  </div>
+
+  <div>
+    <label>U형 반경 (mm)</label>
+    <input id="radius" data-save type="number" value="3" min="0" step="any">
+  </div>
+
+  <div>
+    <label>앞면 보강 높이 (mm)</label>
+    <input id="capFront" data-save type="number" value="0" min="0" step="any">
+  </div>
+
+  <div>
+    <label>뒷면 보강 높이 (mm)</label>
+    <input id="capBack" data-save type="number" value="0" min="0" step="any">
+  </div>
+
+  <div>
+    <label>필릿 용접 면</label>
+    <select id="sides" data-save>
+      <option value="1">한쪽</option>
+      <option value="2">양쪽</option>
+    </select>
+  </div>
+
+  <div>
+    <label>용착금속 밀도 (g/cm³)</label>
+    <input id="density" data-save type="number" value="7.85" min="0" step="any">
+  </div>
+
+  <div>
+    <label>용착 효율 (%)</label>
+    <input id="efficiency" data-save type="number" value="65" min="1" max="100" step="any">
+  </div>
+
+  <div>
+    <label>추가 여유율 (%)</label>
+    <input id="reserve" data-save type="number" value="10" min="0" step="any">
+  </div>
+
+</div>
+
+<button class="green full" onclick="calculateWeld()">용접량 및 소모량 계산</button>
+
+<div id="weldResult" class="result">
+  입력값을 확인한 후 계산을 실행하세요.
+</div>
+
+<hr>
+
+<h3>용접봉 구매 계획</h3>
+
+<label>현재 재고량 (kg)</label>
+<input id="stock" data-save type="number" value="0" min="0" step="any">
+
+<div class="grid">
+  <div>
+    <label>포장 단위 (kg)</label>
+    <select id="pack" data-save>
+      <option value="1">1 kg</option>
+      <option value="2">2 kg</option>
+      <option value="5" selected>5 kg</option>
+      <option value="10">10 kg</option>
+      <option value="15">15 kg</option>
+      <option value="20">20 kg</option>
+    </select>
+  </div>
+
+  <div>
+    <label>최소 주문량 (kg)</label>
+    <input id="minOrder" data-save type="number" value="0" min="0" step="any">
+  </div>
+</div>
+
+<label>용접봉 단가 (원/kg)</label>
+<input id="price" data-save type="number" value="5000" min="0" step="any">
+
+<button class="full" onclick="calculatePurchase()">구매량 계산</button>
+
+<div id="purchaseResult" class="result">
+  먼저 용접량 계산을 실행하세요.
+</div>
+
+<p class="note">
+계산 결과는 입력한 형상과 효율에 따른 추정값입니다.
+실제 소모량은 개선 형상, 용접 패스, 작업 조건 및 공정에 따라 달라집니다.
+</p>
+
+</section>
+
+
+<!-- ================================== -->
+<!-- 3. 재고 관리 -->
+<!-- ================================== -->
+
+<section class="page card" id="pageInventory">
+
+<h2>3. 용접봉 재고 관리</h2>
+
+<label>용접봉 규격</label>
+<input id="invSpec" placeholder="예: E8018-B2">
+
+<label>직경 (mm)</label>
+<select id="invDia">
+  <option value="1.2">1.2</option>
+  <option value="1.6">1.6</option>
+  <option value="2.0">2.0</option>
+  <option value="2.4">2.4</option>
+  <option value="3.2" selected>3.2</option>
+  <option value="4.0">4.0</option>
+  <option value="5.0">5.0</option>
+</select>
+
+<div class="grid">
+  <div>
+    <label>초기 재고량 (kg)</label>
+    <input id="invStock" type="number" value="0" min="0" step="0.1">
+  </div>
+
+  <div>
+    <label>단가 (원/kg)</label>
+    <input id="invPrice" type="number" value="5000" min="0" step="any">
+  </div>
+</div>
+
+<label>구매 포장 단위 (kg)</label>
+<input id="invPack" type="number" value="5" min="0.1" step="0.1">
+
+<button class="green full" onclick="addInventory()">용접봉 등록</button>
+
+<div id="inventoryResult" class="result">
+  등록된 용접봉이 여기에 표시됩니다.
+</div>
+
+<hr>
+
+<h3>입고 및 출고</h3>
+
+<label>관리할 용접봉</label>
+<select id="invSelect">
+  <option value="">용접봉을 먼저 등록하세요.</option>
+</select>
+
+<label>수량 (kg)</label>
+<input id="invAmount" type="number" value="1" min="0.01" step="0.01">
+
+<div class="grid">
+  <button class="green" onclick="receiveInventory()">입고 처리</button>
+  <button class="red" onclick="useInventory()">사용량 차감</button>
+</div>
+
+<button class="gray full" onclick="showInventory()">재고 새로고침</button>
+
+<hr>
+
+<h3>재고 입출고 내역</h3>
+
+<div id="inventoryHistory" class="result">
+  입출고 내역이 여기에 표시됩니다.
+</div>
+
+<p class="note">
+재고는 규격과 직경별로 구분합니다.
+입고 및 출고 처리 후에는 수량과 내역을 확인하세요.
+</p>
+
+</section>
+
+
+<!-- ================================== -->
+<!-- 4. 입열량 및 CEV -->
+<!-- ================================== -->
+
+<section class="page card" id="pageEngineering">
+
+<h2>4. 용접 입열량 계산</h2>
+
+<div class="grid">
+  <div>
+    <label>용접 전류 (A)</label>
+    <input id="amp" data-save type="number" value="150" min="0" step="any">
+  </div>
+
+  <div>
+    <label>용접 전압 (V)</label>
+    <input id="volt" data-save type="number" value="24" min="0" step="any">
+  </div>
+
+  <div>
+    <label>용접 속도 (mm/min)</label>
+    <input id="speed" data-save type="number" value="150" min="0" step="any">
+  </div>
+
+  <div>
+    <label>아크 효율 (0~1)</label>
+    <input id="arcEff" data-save type="number" value="0.8" min="0.01" max="1" step="any">
+  </div>
+</div>
+
+<button class="green full" onclick="calculateHeat()">입열량 계산</button>
+
+<div id="heatResult" class="result">입력 후 계산하세요.</div>
+
+<hr>
+
+<h2>5. 탄소당량 CEV 계산</h2>
+
+<p class="note">
+모재 성적서의 실제 화학성분을 입력하세요.
+</p>
+
+<div class="grid">
+  <div>
+    <label>C (%)</label>
+    <input id="C" data-save type="number" value="0.15" min="0" step="any">
+  </div>
+
+  <div>
+    <label>Mn (%)</label>
+    <input id="Mn" data-save type="number" value="0.5" min="0" step="any">
+  </div>
+
+  <div>
+    <label>Cr (%)</label>
+    <input id="Cr" data-save type="number" value="0" min="0" step="any">
+  </div>
+
+  <div>
+    <label>Mo (%)</label>
+    <input id="Mo" data-save type="number" value="0" min="0" step="any">
+  </div>
+
+  <div>
+    <label>V (%)</label>
+    <input id="V" data-save type="number" value="0" min="0" step="any">
+  </div>
+
+  <div>
+    <label>Ni (%)</label>
+    <input id="Ni" data-save type="number" value="0" min="0" step="any">
+  </div>
+
+  <div>
+    <label>Cu (%)</label>
+    <input id="Cu" data-save type="number" value="0" min="0" step="any">
+  </div>
+</div>
+
+<button class="green full" onclick="calculateCEV()">CEV 계산</button>
+
+<div id="cevResult" class="result">입력 후 계산하세요.</div>
+
+<p class="note">
+CEV는 일반적인 IIW 탄소당량 계산식에 따른 결과입니다.
+재료에 적합한 계산식과 적용 기준을 확인하세요.
+</p>
+
+</section>
+
+
+<!-- ================================== -->
+<!-- 5. WPS 검토 -->
+<!-- ================================== -->
+
+<section class="page card" id="pageWPS">
+
+<h2>6. WPS 검토 및 기록</h2>
+
+<label>예열 온도 (°C)</label>
+<input id="preheat" data-save type="number" placeholder="직접 입력">
+
+<label>층간 온도 (°C)</label>
+<input id="interpass" data-save type="number" placeholder="직접 입력">
+
+<label>PWHT 조건 및 기록</label>
+<textarea id="pwht" data-save rows="4"
+placeholder="유지 온도, 유지 시간, 냉각 방법 및 기록"></textarea>
+
+<label>WPS/PQR 번호</label>
+<input id="wpsNo" data-save placeholder="예: WPS-001 / PQR-001">
+
+<label>검사 및 비고</label>
+<textarea id="wpsMemo" data-save rows="3"
+placeholder="검사 결과, 작업자 및 기타 기록"></textarea>
+
+<button class="green full" onclick="reviewWPS()">검토 체크리스트 생성</button>
+
+<div id="wpsResult" class="result">검토 기록을 생성하세요.</div>
+
+<p class="note">
+이 기능은 기록과 검토 항목을 정리합니다.
+WPS 적합성, 용접 절차 승인, 예열 온도 및 PWHT 조건을 자동으로 확정하지 않습니다.
+실제 적용 기준과 승인 문서를 확인해야 합니다.
+</p>
+
+</section>
+
+
+<!-- ================================== -->
+<!-- 6. 계산서 및 백업 -->
+<!-- ================================== -->
+
+<section class="page card" id="pageReport">
+
+<h2>7. 계산서 작성 및 데이터 관리</h2>
+
+<div id="reportControls">
+
+<button class="green full" onclick="generateReport()">용접 계산서 작성</button>
+
+<button class="full" onclick="printReport()">인쇄 / PDF 저장</button>
+
+<hr>
+
+<h3>데이터 백업</h3>
+
+<button class="gray full" onclick="exportBackup()">백업 파일 내보내기</button>
+
+<label>백업 파일 복원</label>
+<input id="backupFile" type="file" accept=".json,application/json">
+
+<button class="gray full" onclick="importBackup()">백업 파일 복원 실행</button>
+
+<button class="red full" onclick="clearAllData()">전체 데이터 초기화</button>
+
+<p class="note">
+전체 데이터 초기화는 복구하기 어려울 수 있습니다.
+먼저 백업 파일을 저장하세요.
+</p>
+
+</div>
+
+<div id="reportOutput" class="result">
+  계산서를 작성하면 여기에 표시됩니다.
+</div>
+
+</section>
+
+</main>
+
+<footer>
+WELD MASTER KOREA · Mobile Engineering Tool
+</footer>
+
+
+<script>
+"use strict";
+
+// ============================================
+// 기본 함수 및 데이터
+// ============================================
+
+const $ = id => document.getElementById(id);
+
+const n = id => {
+  const el = $(id);
+  if (!el || el.value.trim() === "") return 0;
+  const value = Number(el.value);
+  return Number.isFinite(value) ? value : 0;
+};
+
+const fmt = value => Number(value).toLocaleString("ko-KR", {
+  maximumFractionDigits: 3
+});
+
+const esc = value => String(value ?? "").replace(/[&<>"']/g, c => ({
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  '"': "&quot;",
+  "'": "&#39;"
+}[c]));
+
+let lastWeld = null;
+let lastPurchase = null;
+let inventory = [];
+let inventoryHistory = [];
+let projects = [];
+
+function readStorage(key, fallback) {
+  try {
+    const raw = localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : fallback;
+  } catch (e) {
+    return fallback;
+  }
+}
+
+function writeStorage(key, value) {
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+function getFields() {
+  const fields = {};
+  document.querySelectorAll("[data-save]").forEach(el => {
+    fields[el.id] = el.value;
+  });
+  return fields;
+}
+
+function applyFields(fields) {
+  Object.entries(fields || {}).forEach(([id, value]) => {
+    if ($(id)) $(id).value = value;
+  });
+}
+
+function saveCurrentData() {
+  const ok = writeStorage("wm_fields", getFields());
+  writeStorage("wm_lastWeld", lastWeld);
+  writeStorage("wm_lastPurchase", lastPurchase);
+  return ok;
+}
+
+
+// ============================================
+// 화면 이동
+// ============================================
+
+function showPage(id, button) {
+  document.querySelectorAll(".page").forEach(page => {
+    page.classList.remove("active");
+  });
+
+  $(id).classList.add("active");
+
+  document.querySelectorAll("nav button").forEach(btn => {
+    btn.classList.remove("active");
+  });
+
+  if (button) button.classList.add("active");
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+
+// ============================================
+// 용접봉 후보 검토
+// ============================================
+
+function recommendFiller() {
+  const a = $("base1").value;
+  const b = $("base2").value;
+  const p = $("process").value;
+
+  let filler = "";
+  let note = "";
+
+  const titanium = a === "Ti Grade 2" || b === "Ti Grade 2";
+
+  const stainless = ["SUS304", "SUS316L"];
+  const carbon = ["A36", "A516 Gr.70"];
+
+  if (titanium) {
+    if (a === "Ti Grade 2" && b === "Ti Grade 2" && p === "GTAW") {
+      filler = "ERTi-2";
+      note = "티타늄 Grade 2 용접용 후보입니다.";
+    } else {
+      note = "이종재료 또는 다른 공정입니다. 자동 추천을 보류합니다.";
+    }
+  } else if (a === "A387 Gr.11" || b === "A387 Gr.11") {
+    if (a === "A387 Gr.22" || b === "A387 Gr.22") {
+      note = "Gr.11과 Gr.22 조합은 별도 기술 검토가 필요합니다.";
+    } else {
+      filler = p === "SMAW" ? "E8018-B2" :
+               ["GTAW", "GMAW"].includes(p) ? "ER80S-B2" : "";
+      note = "Cr-Mo 저합금강 용가재 후보입니다.";
+    }
+  } else if (a === "A387 Gr.22" || b === "A387 Gr.22") {
+    filler = p === "SMAW" ? "E9018-B3" :
+             ["GTAW", "GMAW"].includes(p) ? "ER90S-B3" : "";
+    note = "2.25Cr-1Mo 계열 용가재 후보입니다.";
+  } else if (stainless.includes(a) && stainless.includes(b)) {
+    if (a === "SUS304" && b === "SUS304") {
+      filler = p === "SMAW" ? "E308L-16" :
+               ["GTAW", "GMAW"].includes(p) ? "ER308L" : "";
+    } else {
+      filler = p === "SMAW" ? "E316L-16" :
+               ["GTAW", "GMAW"].includes(p) ? "ER316L" : "";
+    }
+    note = "스테인리스강 용가재 후보입니다.";
+  } else if (carbon.includes(a) && carbon.includes(b)) {
+    filler = p === "SMAW" ? "E7018" :
+             p === "GTAW" ? "ER70S-2" :
+             p === "GMAW" ? "ER70S-6" : "";
+    note = "일반 탄소강 용가재 후보입니다.";
+  } else {
+    note = "재질 조합의 자동 추천을 보류합니다.";
+  }
+
+  $("fillerResult").innerHTML =
+    "<b>모재:</b> " + esc(a) + " + " + esc(b) + "<br>" +
+    "<b>공정:</b> " + esc(p) + "<br>" +
+    "<b>후보:</b> " + (filler ? esc(filler) : "별도 검토 필요") + "<br>" +
+    esc(note) +
+    "<hr><small>후보는 승인된 WPS를 대체하지 않습니다.</small>";
+
+  if (filler && !$("filler").value.trim()) {
+    $("filler").value = filler;
+    saveCurrentData();
+  }
+}
+
+
+// ============================================
+// 용접량 및 소모량 계산
+// ============================================
+
+function calculateWeld() {
+  const joint = $("joint").value;
+
+  const t = n("thickness");
+  const gap = n("gap");
+  const face = n("face");
+  const angle = n("angle");
+  const radius = n("radius");
+
+  const length = n("length");
+  const count = n("count");
+  const density = n("density");
+  const eff = n("efficiency") / 100;
+  const reserve = n("reserve") / 100;
+
+  const capFront = n("capFront");
+  const capBack = n("capBack");
+
+  if (
+    length <= 0 || count <= 0 ||
+    density <= 0 || eff <= 0 || eff > 1 ||
+    reserve < 0 || gap < 0 ||
+    face < 0 || capFront < 0 || capBack < 0
+  ) {
+    $("weldResult").textContent =
+      "입력값을 확인하세요. 길이, 개수, 밀도, 효율 및 여유율을 확인하세요.";
+    return;
+  }
+
+  let area = 0;
+  let grooveArea = 0;
+  let frontOpening = gap;
+  let backOpening = gap;
+  let name = "";
+
+  // 필릿 용접
+  if (joint === "fillet") {
+    const leg = n("leg");
+    const sides = n("sides");
+
+    if (leg <= 0) {
+      $("weldResult").textContent = "필릿 각장은 0보다 커야 합니다.";
+      return;
+    }
+
+    area = 0.5 * leg * leg;
+
+    const totalLength = length * count * sides;
+
+    finishWeld(
+      area, totalLength, density, eff, reserve,
+      "필릿 용접",
+      "필릿 각장: " + fmt(leg) + " mm<br>" +
+      "용접 면: " + sides + "면<br>"
+    );
+    return;
+  }
+
+  if (t <= 0 || face >= t) {
+    $("weldResult").textContent =
+      "판 두께는 0보다 커야 하며 루트 페이스는 판 두께보다 작아야 합니다.";
+    return;
+  }
+
+  if (angle <= 0 || angle >= 180) {
+    $("weldResult").textContent = "개선각을 확인하세요.";
+    return;
+  }
+
+  if (
+    ["singleBevel", "doubleBevel", "K"].includes(joint) &&
+    angle >= 90
+  ) {
+    $("weldResult").textContent =
+      "베벨 개선각은 90도 미만으로 입력하세요.";
+    return;
+  }
+
+  const d = t - face;
+  const tanHalf = Math.tan(angle * Math.PI / 360);
+  const tanFull = Math.tan(angle * Math.PI / 180);
+  const rootArea = gap * t;
+
+  switch (joint) {
+    case "square":
+      name = "I형 맞대기";
+      grooveArea = 0;
+      break;
+
+    case "singleV":
+      name = "V형 맞대기";
+      grooveArea = d * d * tanHalf;
+      frontOpening = gap + 2 * d * tanHalf;
+      break;
+
+    case "doubleV":
+      name = "X형 맞대기";
+      grooveArea = 0.5 * d * d * tanHalf;
+      frontOpening = gap + d * tanHalf;
+      backOpening = gap + d * tanHalf;
+      break;
+
+    case "singleBevel":
+      name = "단면 베벨형";
+      grooveArea = 0.5 * d * d * tanFull;
+      frontOpening = gap + d * tanFull;
+      break;
+
+    case "doubleBevel":
+      name = "양면 베벨형";
+      grooveArea = 0.25 * d * d * tanFull;
+      frontOpening = gap + (d / 2) * tanFull;
+      backOpening = gap + (d / 2) * tanFull;
+      break;
+
+    case "singleU":
+    case "doubleU": {
+      name = joint === "singleU" ? "U형 맞대기" : "양면 U형 맞대기";
+
+      const depth = joint === "singleU" ? d : d / 2;
+
+      if (radius <= 0 || radius > depth) {
+        $("weldResult").textContent =
+          "U형 반경은 0보다 크고 해당 개선 깊 이하여야 합니다.";
+        return;
+      }
+
+      const straight = depth - radius;
+
+      const oneSide =
+        Math.PI * radius * radius / 2 +
+        2 * radius * straight +
+        straight * straight * tanHalf;
+
+      grooveArea = joint === "singleU" ? oneSide : 2 * oneSide;
+
+      frontOpening =
+        gap + 2 * radius + 2 * straight * tanHalf;
+
+      if (joint === "doubleU") {
+        backOpening = frontOpening;
+      }
+      break;
+    }
+
+    case "K":
+      name = "K형 T접합 근사";
+      grooveArea = 0.25 * d * d * tanFull;
+      frontOpening = gap + (d / 2) * tanFull;
+      backOpening = gap + (d / 2) * tanFull;
+      break;
+
+    default:
+      $("weldResult").textContent = "지원하지 않는 용접 형상입니다.";
+      return;
+  }
+
+  const capArea =
+    0.5 * frontOpening * capFront +
+    0.5 * backOpening * capBack;
+
+  area = rootArea + grooveArea + capArea;
+
+  if (!Number.isFinite(area) || area <= 0) {
+    $("weldResult").textContent =
+      "계산된 단면적이 유효하지 않습니다. 입력값을 확인하세요.";
+    return;
+  }
+
+  const totalLength = length * count;
+
+  const details =
+    "판 두께: " + fmt(t) + " mm<br>" +
+    "루트 간격: " + fmt(gap) + " mm<br>" +
+    "루트 페이스: " + fmt(face) + " mm<br>" +
+    "개선각: " + fmt(angle) + "°<br>" +
+    "루트 간격 단면적: " + fmt(rootArea) + " mm²<br>" +
+    "개선부 단면적 추정: " + fmt(grooveArea) + " mm²<br>" +
+    "보강부 단면적 추정: " + fmt(capArea) + " mm²<br>";
+
+  finishWeld(
+    area, totalLength, density, eff, reserve,
+    name, details
+  );
+}
+
+
+function finishWeld(area, totalLength, density, eff, reserve, name, details) {
+  const volume = area * totalLength;
+  const depositedKg = volume * density / 1000000;
+  const consumedKg = depositedKg / eff;
+  const requiredKg = consumedKg * (1 + reserve);
+
+  lastWeld = {
+    name,
+    area,
+    totalLength,
+    volume,
+    depositedKg,
+    consumedKg,
+    requiredKg
+  };
+
+  $("weldResult").innerHTML =
+    "<b>용접량 계산 결과</b><br>" +
+    "형상: " + esc(name) + "<br>" +
+    details +
+    "총 용접 길이: " + fmt(totalLength) + " mm<br>" +
+    "용접 금속 체적: " + fmt(volume) + " mm³<br>" +
+    "필요 용착금속 중량: <b>" + fmt(depositedKg) + " kg</b><br>" +
+    "효율 반영 소모량: <b>" + fmt(consumedKg) + " kg</b><br>" +
+    "여유율 포함 총 필요량: <b>" + fmt(requiredKg) + " kg</b>";
+
+  saveCurrentData();
+}
+
+
+// ============================================
+// 구매량 계산
+// ============================================
+
+function calculatePurchase() {
+  if (!lastWeld) {
+    $("purchaseResult").textContent =
+      "먼저 용접량 및 소모량 계산을 실행하세요.";
+    return;
+  }
+
+  const stock = n("stock");
+  const pack = n("pack");
+  const minOrder = n("minOrder");
+  const price = n("price");
+
+  if (stock < 0 || pack <= 0 || minOrder < 0 || price < 0) {
+    $("purchaseResult").textContent =
+      "재고, 포장 단위, 최소 주문량 및 단가를 확인하세요.";
+    return;
+  }
+
+  const required = lastWeld.requiredKg;
+  const shortage = Math.max(0, required - stock);
+  const order = Math.max(shortage, minOrder);
+  const packs = order > 0 ? Math.ceil(order / pack) : 0;
+
+  const purchaseKg = packs * pack;
+  const remaining = stock + purchaseKg - required;
+  const cost = purchaseKg * price;
+
+  lastPurchase = {
+    required, stock, shortage, packs,
+    purchaseKg, remaining, cost
+  };
+
+  $("purchaseResult").innerHTML =
+    "총 필요량: " + fmt(required) + " kg<br>" +
+    "현재 재고: " + fmt(stock) + " kg<br>" +
+    "부족량: " + fmt(shortage) + " kg<br>" +
+    "구매 포장 수량: <b>" + fmt(packs) + "개</b><br>" +
+    "구매량: <b>" + fmt(purchaseKg) + " kg</b><br>" +
+    "구매 후 예상 잔량: " + fmt(remaining) + " kg<br>" +
+    "예상 구매 금액: <b>" + fmt(cost) + "원</b>";
+
+  saveCurrentData();
+}
+
+
+// ============================================
+// 입열량 계산
+// ============================================
+
+function calculateHeat() {
+  const amp = n("amp");
+  const volt = n("volt");
+  const speed = n("speed");
+  const eff = n("arcEff");
+
+  if (
+    amp <= 0 || volt <= 0 ||
+    speed <= 0 || eff <= 0 || eff > 1
+  ) {
+    $("heatResult").textContent =
+      "전류, 전압, 속도 및 아크 효율을 확인하세요.";
+    return;
+  }
+
+  const arcEnergy = volt * amp * 60 / (speed * 1000);
+  const heat = arcEnergy * eff;
+
+  $("heatResult").innerHTML =
+    "아크 에너지: <b>" + fmt(arcEnergy) + " kJ/mm</b><br>" +
+    "효율 반영 입열량: <b>" + fmt(heat) + " kJ/mm</b>";
+
+  saveCurrentData();
+}
+
+
+// ============================================
+// CEV 계산
+// ============================================
+
+function calculateCEV() {
+  const C = n("C");
+  const Mn = n("Mn");
+  const Cr = n("Cr");
+  const Mo = n("Mo");
+  const V = n("V");
+  const Ni = n("Ni");
+  const Cu = n("Cu");
+
+  if ([C, Mn, Cr, Mo, V, Ni, Cu].some(x => x < 0)) {
+    $("cevResult").textContent =
+      "화학성분은 음수가 될 수 없습니다.";
+    return;
+  }
+
+  const cev =
+    C + Mn / 6 +
+    (Cr + Mo + V) / 5 +
+    (Ni + Cu) / 15;
+
+  $("cevResult").innerHTML =
+    "계산식: C + Mn/6 + (Cr+Mo+V)/5 + (Ni+Cu)/15<br>" +
+    "탄소당량 CEV: <b>" + fmt(cev) + "</b>";
+
+  saveCurrentData();
+}
+
+
+// ============================================
+// 재고 관리
+// ============================================
+
+function saveInventory() {
+  writeStorage("wm_inventory", inventory);
+  writeStorage("wm_inventoryHistory", inventoryHistory);
+}
+
+function recordInventory(item, type, amount) {
+  inventoryHistory.unshift({
+    date: new Date().toLocaleString("ko-KR"),
+    spec: item.spec,
+    dia: item.dia,
+    type,
+    amount,
+    balance: item.stock
+  });
+
+  inventoryHistory = inventoryHistory.slice(0, 300);
+}
+
+function addInventory() {
+  const spec = $("invSpec").value.trim().toUpperCase();
+  const dia = n("invDia");
+  const stock = n("invStock");
+  const price = n("invPrice");
+  const pack = n("invPack");
+
+  if (!spec) {
+    alert("용접봉 규격을 입력하세요.");
+    return;
+  }
+
+  if (stock < 0 || price < 0 || pack <= 0) {
+    alert("재고량, 단가 및 포장 단위를 확인하세요.");
+    return;
+  }
+
+  let item = inventory.find(x =>
+    x.spec === spec && Number(x.dia) === dia
+  );
+
+  if (item) {
+    item.stock += stock;
+    item.price = price;
+    item.pack = pack;
+
+    recordInventory(item, "등록/추가 입고", stock);
+  } else {
+    item = {
+      id: String(Date.now()) + String(Math.floor(Math.random() * 10000)),
+      spec,
+      dia,
+      stock,
+      price,
+      pack
+    };
+
+    inventory.push(item);
+
+    if (stock > 0) {
+      recordInventory(item, "최초 등록", stock);
+    }
+  }
+
+  $("invSpec").value = "";
+
+  saveInventory();
+  showInventory();
+
+  alert("용접봉 재고를 등록했습니다.");
+}
+
+function getSelectedInventory() {
+  const id = $("invSelect").value;
+  return inventory.find(x => String(x.id) === String(id));
+}
+
+function receiveInventory() {
+  const item = getSelectedInventory();
+  const amount = n("invAmount");
+
+  if (!item) {
+    alert("용접봉을 선택하세요.");
+    return;
+  }
+
+  if (amount <= 0) {
+    alert("입고 수량을 입력하세요.");
+    return;
+  }
+
+  item.stock = Math.round((item.stock + amount) * 1000) / 1000;
+
+  recordInventory(item, "입고", amount);
+
+  saveInventory();
+  showInventory();
+}
+
+function useInventory() {
+  const item = getSelectedInventory();
+  const amount = n("invAmount");
+
+  if (!item) {
+    alert("용접봉을 선택하세요.");
+    return;
+  }
+
+  if (amount <= 0) {
+    alert("사용 수량을 입력하세요.");
+    return;
+  }
+
+  if (amount > item.stock) {
+    alert(
+      "재고가 부족합니다.\n현재 재고: " +
+      fmt(item.stock) + " kg"
+    );
+    return;
+  }
+
+  if (!confirm(
+    item.spec + " / " + fmt(item.dia) + " mm\n" +
+    "사용량: " + fmt(amount) + " kg\n" +
+    "차감하시겠습니까?"
+  )) {
+    return;
+  }
+
+  item.stock = Math.round((item.stock - amount) * 1000) / 1000;
+
+  recordInventory(item, "사용/출고", -amount);
+
+  saveInventory();
+  showInventory();
+}
+
+function deleteInventory(id) {
+  const item = inventory.find(x => String(x.id) === String(id));
+
+  if (!item) return;
+
+  if (!confirm(item.spec + " 재고를 삭제하시겠습니까?")) return;
+
+  inventory = inventory.filter(x => String(x.id) !== String(id));
+
+  saveInventory();
+  showInventory();
+}
+
+function showInventory() {
+  const box = $("inventoryResult");
+  const select = $("invSelect");
+
+  if (!inventory.length) {
+    box.textContent = "등록된 용접봉이 없습니다.";
+    select.innerHTML = '<option value="">용접봉을 먼저 등록하세요.</option>';
+  } else {
+    let html = `
+      <table>
+        <thead>
+          <tr>
+            <th>규격</th>
+            <th>직경</th>
+            <th>재고</th>
+            <th>단가</th>
+            <th>관리</th>
+          </tr>
+        </thead>
+        <tbody>`;
+
+    inventory.forEach(item => {
+      html += `
+        <tr>
+          <td>${esc(item.spec)}</td>
+          <td>${fmt(item.dia)} mm</td>
+          <td>${fmt(item.stock)} kg</td>
+          <td>${fmt(item.price)}원</td>
+          <td>
+            <button class="red"
+              onclick="deleteInventory('${esc(item.id)}')">삭제</button>
+          </td>
+        </tr>`;
+    });
+
+    html += "</tbody></table>";
+    box.innerHTML = html;
+
+    const oldValue = select.value;
+
+    select.innerHTML = inventory.map(item => `
+      <option value="${esc(item.id)}">
+        ${esc(item.spec)} / ${fmt(item.dia)} mm
+        / ${fmt(item.stock)} kg
+      </option>
+    `).join("");
+
+    if (inventory.some(x => String(x.id) === oldValue)) {
+      select.value = oldValue;
+    }
+  }
+
+  const historyBox = $("inventoryHistory");
+
+  if (!inventoryHistory.length) {
+    historyBox.textContent = "입출고 내역이 없습니다.";
+  } else {
+    historyBox.innerHTML = `
+      <table>
+        <thead>
+          <tr>
+            <th>일시</th>
+            <th>규격</th>
+            <th>구분</th>
+            <th>수량</th>
+            <th>잔량</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${inventoryHistory.slice(0, 100).map(h => `
+            <tr>
+              <td>${esc(h.date)}</td>
+              <td>${esc(h.spec)} / ${fmt(h.dia)} mm</td>
+              <td>${esc(h.type)}</td>
+              <td>${fmt(h.amount)} kg</td>
+              <td>${fmt(h.balance)} kg</td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>`;
+  }
+}
+
+
+// ============================================
+// WPS 검토 체크리스트
+// ============================================
+
+function reviewWPS() {
+  const code = $("code").value;
+
+  const items = [
+    "모재 규격 및 재료 그룹 확인",
+    "용가재 규격과 분류 확인",
+    "승인된 WPS/PQR 및 용접사 자격 확인",
+    "용접 두께 및 직경의 자격 범위 확인",
+    "필수 변수 및 추가 필수 변수 확인",
+    "예열 및 층간 온도 요구사항 확인",
+    "PWHT 요구사항과 기록 확인",
+    "필요한 비파괴검사 및 시험 확인"
+  ];
+
+  if (code.includes("ASME")) {
+    items.push("ASME Section IX 자격 요건 확인");
+    items.push("적용 건설 코드의 예열·PWHT 요구사항 확인");
+  }
+
+  $("wpsResult").innerHTML =
+    "<b>WPS 검토 기록</b><br>" +
+    "적용 기준: " + esc(code) + "<br>" +
+    "WPS/PQR 번호: " + esc($("wpsNo").value || "미입력") + "<br>" +
+    "예열 온도: " + esc($("preheat").value || "미입력") + "<br>" +
+    "층간 온도: " + esc($("interpass").value || "미입력") + "<br>" +
+    "PWHT: " + esc($("pwht").value || "미입력") + "<br>" +
+    "비고: " + esc($("wpsMemo").value || "미입력") +
+    "<hr>" +
+    items.map(x => "□ " + esc(x)).join("<br>");
+
+  saveCurrentData();
+}
+
+
+// ============================================
+// 프로젝트 저장 및 불러오기
+// ============================================
+
+function refreshProjects() {
+  const select = $("projectSelect");
+
+  if (!projects.length) {
+    select.innerHTML = '<option value="">저장된 프로젝트 없음</option>';
+    return;
+  }
+
+  select.innerHTML = projects.map(p => `
+    <option value="${esc(p.id)}">
+      ${esc(p.name)} / ${esc(p.jobNo)}
+    </option>
+  `).join("");
+}
+
+function saveProject() {
+  const name = $("project").value.trim() || "이름 없는 프로젝트";
+  const jobNo = $("jobNo").value.trim() || "-";
+
+  const project = {
+    id: String(Date.now()),
+    name,
+    jobNo,
+    date: new Date().toLocaleString("ko-KR"),
+    fields: getFields(),
+    lastWeld,
+    lastPurchase
+  };
+
+  projects.unshift(project);
+  projects = projects.slice(0, 100);
+
+  const ok1 = writeStorage("wm_projects", projects);
+  const ok2 = saveCurrentData();
+
+  refreshProjects();
+
+  $("projectSelect").value = project.id;
+
+  $("projectResult").textContent =
+    ok1 && ok2
+      ? "프로젝트가 저장되었습니다: " + name
+      : "저장 공간을 사용할 수 없습니다. 브라우저 설정을 확인하세요.";
+}
+
+function loadSelectedProject() {
+  const id = $("projectSelect").value;
+  const project = projects.find(p => String(p.id) === String(id));
+
+  if (!project) {
+    alert("불러올 프로젝트를 선택하세요.");
+    return;
+  }
+
+  applyFields(project.fields);
+
+  lastWeld = project.lastWeld || null;
+  lastPurchase = project.lastPurchase || null;
+
+  saveCurrentData();
+
+  $("projectResult").textContent =
+    "프로젝트를 불러왔습니다: " + project.name;
+
+  if (lastWeld) {
+    $("weldResult").innerHTML =
+      "저장된 용접량 계산 결과가 있습니다.<br>" +
+      "총 필요량: " + fmt(lastWeld.requiredKg) + " kg";
+  }
+
+  if (lastPurchase) {
+    $("purchaseResult").innerHTML =
+      "저장된 구매 계획이 있습니다.<br>" +
+      "구매량: " + fmt(lastPurchase.purchaseKg) + " kg<br>" +
+      "예상 금액: " + fmt(lastPurchase.cost) + "원";
+  }
+}
+
+
+// ============================================
+// 계산서 작성
+// ============================================
+
+function generateReport() {
+  const project = $("project").value || "미입력";
+  const jobNo = $("jobNo").value || "미입력";
+  const date = new Date().toLocaleString("ko-KR");
+
+  const weldHtml = lastWeld ? `
+    <table>
+      <tr><th>항목</th><th>결과</th></tr>
+      <tr><td>용접 형상</td><td>${esc(lastWeld.name)}</td></tr>
+      <tr><td>단면적</td><td>${fmt(lastWeld.area)} mm²</td></tr>
+      <tr><td>총 용접 길이</td><td>${fmt(lastWeld.totalLength)} mm</td></tr>
+      <tr><td>용접 금속 체적</td><td>${fmt(lastWeld.volume)} mm³</td></tr>
+      <tr><td>필요 용착금속</td><td>${fmt(lastWeld.depositedKg)} kg</td></tr>
+      <tr><td>효율 반영 소모량</td><td>${fmt(lastWeld.consumedKg)} kg</td></tr>
+      <tr><td>여유율 포함 총 필요량</td><td><b>${fmt(lastWeld.requiredKg)} kg</b></td></tr>
+    </table>` :
+    "<p>용접량 계산 결과가 없습니다.</p>";
+
+  const purchaseHtml = lastPurchase ? `
+    <table>
+      <tr><th>항목</th><th>결과</th></tr>
+      <tr><td>현재 재고</td><td>${fmt(lastPurchase.stock)} kg</td></tr>
+      <tr><td>부족량</td><td>${fmt(lastPurchase.shortage)} kg</td></tr>
+      <tr><td>구매 포장 수량</td><td>${fmt(lastPurchase.packs)}개</td></tr>
+      <tr><td>실제 구매량</td><td>${fmt(lastPurchase.purchaseKg)} kg</td></tr>
+      <tr><td>구매 후 잔량</td><td>${fmt(lastPurchase.remaining)} kg</td></tr>
+      <tr><td>예상 구매 금액</td><td>${fmt(lastPurchase.cost)}원</td></tr>
+    </table>` :
+    "<p>구매 계획 계산 결과가 없습니다.</p>";
+
+  const arcEnergy =
+    n("amp") > 0 && n("volt") > 0 && n("speed") > 0
+      ? n("volt") * n("amp") * 60 / (n("speed") * 1000)
+      : null;
+
+  const heatHtml = arcEnergy !== null ? `
+    <table>
+      <tr><th>항목</th><th>결과</th></tr>
+      <tr><td>전류</td><td>${fmt(n("amp"))} A</td></tr>
+      <tr><td>전압</td><td>${fmt(n("volt"))} V</td></tr>
+      <tr><td>용접 속도</td><td>${fmt(n("speed"))} mm/min</td></tr>
+      <tr><td>아크 에너지</td><td>${fmt(arcEnergy)} kJ/mm</td></tr>
+      <tr><td>효율 반영 입열량</td><td>${fmt(arcEnergy * n("arcEff"))} kJ/mm</td></tr>
+    </table>` :
+    "<p>입열량 조건이 입력되지 않았습니다.</p>";
+
+  const C = n("C");
+  const Mn = n("Mn");
+  const Cr = n("Cr");
+  const Mo = n("Mo");
+  const V = n("V");
+  const Ni = n("Ni");
+  const Cu = n("Cu");
+
+  const cev =
+    C + Mn / 6 + (Cr + Mo + V) / 5 + (Ni + Cu) / 15;
+
+  $("reportOutput").innerHTML = `
+    <div style="text-align:center">
+      <h1>WELD MASTER KOREA</h1>
+      <h2>용접 계산서</h2>
+    </div>
+
+    <p>
+      <b>프로젝트:</b> ${esc(project)}<br>
+      <b>작업번호:</b> ${esc(jobNo)}<br>
+      <b>작성일시:</b> ${esc(date)}<br>
+      <b>모재:</b> ${esc($("base1").value)} + ${esc($("base2").value)}<br>
+      <b>용접 방식:</b> ${esc($("process").value)}<br>
+      <b>용접봉:</b> ${esc($("filler").value || "미입력")}<br>
+      <b>적용 기준:</b> ${esc($("code").value)}
+    </p>
+
+    <h3>1. 용접량 및 소모량</h3>
+    ${weldHtml}
+
+    <h3>2. 용접봉 구매 계획</h3>
+    ${purchaseHtml}
+
+    <h3>3. 용접 입열량</h3>
+    ${heatHtml}
+
+    <h3>4. 탄소당량 CEV</h3>
+    <p>
+      C: ${fmt(C)}% / Mn: ${fmt(Mn)}% / Cr: ${fmt(Cr)}% /
+      Mo: ${fmt(Mo)}% / V: ${fmt(V)}% /
+      Ni: ${fmt(Ni)}% / Cu: ${fmt(Cu)}%
+    </p>
+    <p><b>CEV: ${fmt(cev)}</b></p>
+
+    <h3>5. WPS 검토 기록</h3>
+    <p>
+      WPS/PQR 번호: ${esc($("wpsNo").value || "미입력")}<br>
+      예열 온도: ${esc($("preheat").value || "미입력")}<br>
+      층간 온도: ${esc($("interpass").value || "미입력")}<br>
+      PWHT: ${esc($("pwht").value || "미입력")}<br>
+      비고: ${esc($("wpsMemo").value || "미입력")}
+    </p>
+
+    <h3>6. 재고 현황</h3>
+    ${inventory.length ? `
+      <table>
+        <tr><th>규격</th><th>직경</th><th>재고</th><th>단가</th></tr>
+        ${inventory.map(item => `
+          <tr>
+            <td>${esc(item.spec)}</td>
+            <td>${fmt(item.dia)} mm</td>
+            <td>${fmt(item.stock)} kg</td>
+            <td>${fmt(item.price)}원/kg</td>
+          </tr>`).join("")}
+      </table>` : "<p>등록된 재고가 없습니다.</p>"}
+
+    <hr>
+
+    <p style="font-size:11px;color:#555">
+      본 계산서는 입력값에 따른 참고용 계산 결과입니다.
+      실제 제작 전 도면, 재료 성적서, 승인된 WPS/PQR,
+      적용 코드 및 설계 요구사항을 별도로 확인해야 합니다.
+      계산서 자체가 코드 적합성 또는 용접 절차 승인을 의미하지 않습니다.
+    </p>
+  `;
+
+  $("projectResult").textContent = "용접 계산서가 작성되었습니다.";
+}
+
+function printReport() {
+  if (!$("reportOutput").innerHTML.trim() ||
+      $("reportOutput").textContent.includes("계산서를 작성하면")) {
+    generateReport();
+  }
+
+  document.body.classList.add("print-mode");
+
+  setTimeout(() => {
+    window.print();
+    setTimeout(() => {
+      document.body.classList.remove("print-mode");
+    }, 1000);
+  }, 200);
+}
+
+
+// ============================================
+// 백업 및 복원
+// ============================================
+
+function exportBackup() {
+  const data = {
+    version: 1,
+    exportedAt: new Date().toISOString(),
+    fields: getFields(),
+    lastWeld,
+    lastPurchase,
+    inventory,
+    inventoryHistory,
+    projects
+  };
+
+  const blob = new Blob(
+    [JSON.stringify(data, null, 2)],
+    { type: "application/json;charset=utf-8" }
+  );
+
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+
+  a.href = url;
+  a.download = "WELD_MASTER_KOREA_BACKUP.json";
+  a.click();
+
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+function importBackup() {
+  const file = $("backupFile").files[0];
+
+  if (!file) {
+    alert("복원할 JSON 백업 파일을 선택하세요.");
+    return;
+  }
+
+  const reader = new FileReader();
+
+  reader.onload = () => {
+    try {
+      const data = JSON.parse(reader.result);
+
+      if (!data || typeof data !== "object" || !data.fields) {
+        throw new Error("백업 파일 형식이 올바르지 않습니다.");
+      }
+
+      if (!confirm(
+        "현재 프로젝트와 재고 데이터가 백업 파일의 데이터로 교체됩니다. 계속할까요?"
+      )) {
+        return;
+      }
+
+      applyFields(data.fields);
+
+      lastWeld = data.lastWeld || null;
+      lastPurchase = data.lastPurchase || null;
+      inventory = Array.isArray(data.inventory) ? data.inventory : [];
+      inventoryHistory = Array.isArray(data.inventoryHistory)
+        ? data.inventoryHistory : [];
+      projects = Array.isArray(data.projects) ? data.projects : [];
+
+      saveCurrentData();
+      saveInventory();
+      writeStorage("wm_projects", projects);
+
+      refreshProjects();
+      showInventory();
+
+      $("projectResult").textContent = "백업 데이터를 복원했습니다.";
+
+      alert("백업 복원이 완료되었습니다.");
+
+    } catch (e) {
+      alert("복원 실패: " + e.message);
+    }
+  };
+
+  reader.readAsText(file);
+}
+
+function clearAllData() {
+  if (!confirm(
+    "저장된 프로젝트, 재고, 계산 결과를 모두 삭제합니다. 먼저 백업하셨나요?"
+  )) {
+    return;
+  }
+
+  if (!confirm("정말로 전체 데이터를 초기화할까요?")) {
+    return;
+  }
+
+  [
+    "wm_fields",
+    "wm_lastWeld",
+    "wm_lastPurchase",
+    "wm_inventory",
+    "wm_inventoryHistory",
+    "wm_projects"
+  ].forEach(key => localStorage.removeItem(key));
+
+  location.reload();
+}
+
+
+// ============================================
+// 초기화 및 자동 저장
+// ============================================
+
+function initialize() {
+  applyFields(readStorage("wm_fields", {}));
+
+  lastWeld = readStorage("wm_lastWeld", null);
+  lastPurchase = readStorage("wm_lastPurchase", null);
+
+  inventory = readStorage("wm_inventory", []);
+  inventoryHistory = readStorage("wm_inventoryHistory", []);
+  projects = readStorage("wm_projects", []);
+
+  if (!Array.isArray(inventory)) inventory = [];
+  if (!Array.isArray(inventoryHistory)) inventoryHistory = [];
+  if (!Array.isArray(projects)) projects = [];
+
+  refreshProjects();
+  showInventory();
+
+  document.querySelectorAll("[data-save]").forEach(el => {
+    el.addEventListener("input", saveCurrentData);
+    el.addEventListener("change", saveCurrentData);
+  });
+}
+
+initialize();
+</script>
+
+</body>
+</html>
