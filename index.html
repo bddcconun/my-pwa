@@ -6,6 +6,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <head>
+
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#ffffff">
+
 <meta charset="UTF-8">
 <meta name="viewport"
       content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -1921,6 +1925,16 @@ function initialize() {
 }
 
 initialize();
+</script>
+
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js")
+      .then(() => console.log("PWA 등록 성공"))
+      .catch(error => console.error("PWA 등록 실패:", error));
+  });
+}
 </script>
 
 </body>
